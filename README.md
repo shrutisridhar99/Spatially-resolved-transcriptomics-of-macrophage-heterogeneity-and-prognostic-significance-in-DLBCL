@@ -16,3 +16,6 @@ Seurat (v2.3.0)11 was used for the analysis of the single cell datasets. All fun
 
 For each macrophage signature (GC- and IF like, LZ- and DZ-like, GC- and DLBCL-like, Non-relapse- and relapse-like), the top 50 or all genes were taken to create a Module Score to analyze feature expression. This score was then projected onto the uniform manifold approximation and projection (UMAP) space named “Mo-MacVERSE”. The region that showed enrichment was further subsetted and analyzed. (Signatures_Plot.R, Signatures_Plot_List.R)
 
+Authors
+Shruti Sridhar: shruti.sridhar@u.nus.edu
+Giorgio Bertolazzi: giorgio.bertolaz@gmail.com
