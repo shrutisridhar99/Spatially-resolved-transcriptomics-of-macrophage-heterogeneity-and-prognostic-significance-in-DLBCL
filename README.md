@@ -6,9 +6,9 @@
 
 Differential expression analyses (DEA_DLBCL.R, DEA_Tonsil.R) were carried out using the limma package's moderated t-test.1 Upregulated/downregulated genes were selected by applying the Benjamini-Hochberg correction on the p-values (adjusted p-values < 0.05). In case of the absence of statistically significant genes, upregulated/downregulated genes were selected by applying a threshold on the absolute log2-fold-change (|log2FC| > 0.58).
 
-The gene set enrichment analysis has been manually implemented by calculating the Fisher exact test p-values on the GSEA Molecular Signature Database (MSigDB). The BH correction for multiple comparisons has been applied to evaluate the statistical significance of the pathways. An additional gene set enrichment analysis has been carried out using the GSEA software (version 4.2.3)
+The gene set enrichment analysis (function_hallmark_enrichment.R) has been manually implemented by calculating the Fisher exact test p-values on the GSEA Molecular Signature Database (MSigDB). The BH correction for multiple comparisons has been applied to evaluate the statistical significance of the pathways. An additional gene set enrichment analysis has been carried out using the GSEA software (version 4.2.3)
 
-Kaplan-Meier method has been used to estimate the survival functions among groups, and the log-rank test has been used to test the differences in the overall survival between the selected groups
+Kaplan-Meier method has been used to estimate the survival functions among groups, and the log-rank test has been used to test the differences in the overall survival between the selected groups (survival.R)
 
 2. Single cell analysis 
 
