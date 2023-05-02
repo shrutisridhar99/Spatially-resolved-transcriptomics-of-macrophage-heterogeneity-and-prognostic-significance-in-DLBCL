@@ -3,9 +3,8 @@
 
 1. DSP analysis 
 
-a. DEA analysis
 
-Differential expression analyses were carried out using the limma package's moderated t-test.1 Upregulated/downregulated genes were selected by applying the Benjamini-Hochberg correction on the p-values (adjusted p-values < 0.05). In case of the absence of statistically significant genes, upregulated/downregulated genes were selected by applying a threshold on the absolute log2-fold-change (|log2FC| > 0.58).
+Differential expression analyses (DEA) were carried out using the limma package's moderated t-test.1 Upregulated/downregulated genes were selected by applying the Benjamini-Hochberg correction on the p-values (adjusted p-values < 0.05). In case of the absence of statistically significant genes, upregulated/downregulated genes were selected by applying a threshold on the absolute log2-fold-change (|log2FC| > 0.58).
 
 
 2. Single cell analysis 
