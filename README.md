@@ -18,4 +18,4 @@ For each macrophage signature (GC- and IF like, LZ- and DZ-like, GC- and DLBCL-l
 
 ### Authors
 Shruti Sridhar: [shruti.sridhar@u.nus.edu](mailto::shruti.sridhar@u.nus.edu).   
-Giorgio Bertolazzi: [giorgio.bertolaz@gmail.com]((mailto::giorgio.bertolaz@gmail.com)
+Giorgio Bertolazzi: [giorgio.bertolaz@gmail.com](mailto::giorgio.bertolaz@gmail.com)
