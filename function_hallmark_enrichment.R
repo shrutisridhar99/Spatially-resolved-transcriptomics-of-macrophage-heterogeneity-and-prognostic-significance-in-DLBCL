@@ -1,15 +1,15 @@
 
 require(readxl)
 
-funz_enrich_gsea <- function(input_genes, correction="BH",out_name="analysis",
-                             print_dir,    pool=NULL ){
+funz_enrich_gsea <- function(input_genes, correction="BH",
+                            dir,    pool=NULL ){
   
   
   N<- length(pool)
   m<- length(input_genes)  
   n<- N-m      
 
-    setwd(print_dir)
+    setwd(dir)
     hallmark<-readLines("Hallmark_2022.txt")
     
     k=q= pval= Genes = Term=   numeric()
