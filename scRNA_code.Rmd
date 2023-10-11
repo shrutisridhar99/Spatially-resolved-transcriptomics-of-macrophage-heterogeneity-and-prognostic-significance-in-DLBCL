@@ -1,0 +1,174 @@
+---
+title: "DSP new"
+author: "Shruti"
+date: "2023-09-08"
+output: html_document
+---
+```{r}
+library(Seurat)
+```
+
+```{r}
+dds_deg_dz <- readxl::read_xlsx("~/Downloads/results_15_09_23/4_Analysis_percentile_filtering/4.1_DEA_percentile_filtering/CD68/DZ_vs_LZ/DE_genes_DZ_UP_BH_percentile.xlsx")
+
+dds_deg_lz <- readxl::read_xlsx("~/Downloads/results_15_09_23/4_Analysis_percentile_filtering/4.1_DEA_percentile_filtering/CD68/DZ_vs_LZ/DE_genes_LZ_UP_BH_percentile.xlsx")
+
+dds_deg_if <- readxl::read_xlsx("~/Downloads/results_15_09_23/4_Analysis_percentile_filtering/4.1_DEA_percentile_filtering/CD68/GC_vs_IF/DE_genes_IF_UP_BH.xlsx")
+
+dds_deg_gc <- readxl::read_xlsx("~/Downloads/results_15_09_23/4_Analysis_percentile_filtering/4.1_DEA_percentile_filtering/CD68/GC_vs_IF/DE_genes_GC_UP_BH.xlsx")
+
+dds_deg_relapse <- readxl::read_xlsx("~/Downloads/results_15_09_23/4_Analysis_percentile_filtering/4.1_DEA_percentile_filtering/CD68/relapse_vs_no.relapse/DE_genes_relapse_UP_BH.xlsx")
+
+dds_deg_no_relapse <- readxl::read_xlsx("~/Downloads/results_15_09_23/4_Analysis_percentile_filtering/4.1_DEA_percentile_filtering/CD68/relapse_vs_no.relapse/DE_genes_no.relapse_UP_BH.xlsx")
+
+
+dds_deg_dlbcl <- readxl::read_xlsx("~/Downloads/results_15_09_23/4_Analysis_percentile_filtering/4.1_DEA_percentile_filtering/CD68/DLBCL_vs_GC/DE_genes_DLBCL_UP_BH_percentile.xlsx")
+
+dds_deg_gc_full <- readxl::read_xlsx("~/Downloads/results_15_09_23/4_Analysis_percentile_filtering/4.1_DEA_percentile_filtering/CD68/DLBCL_vs_GC/DE_genes_GC_UP_BH.xlsx")
+
+
+```
+
+```{r}
+
+#Malignant B cells 
+q.all.mlg <- AddModuleScore(object = q.all.mlg, features = list(dds_deg_dz$geni), ctrl = 100, name = 'DZ')
+p <- FeaturePlot_scCustom(seurat_object = q.all.mlg, features = 'DZ1', order = F, na_cutoff = 0.2)
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/DZ_Malignant_B_perc_filtering.tiff", p, width=5, height=5, device = "tiff")
+#dev.off()
+
+
+q.all.mlg <- AddModuleScore(object = q.all.mlg, features = list(dds_deg_lz$geni), ctrl = 100, name = 'LZ')
+p_1 <- FeaturePlot_scCustom(seurat_object = q.all.mlg, features = 'LZ1', order = F, na_cutoff = 0.05)
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/LZ_Malignant_B_perc.tiff", p_1,  width=5, height=5, device = "tiff")
+#dev.off()
+
+q.all.mlg <- AddModuleScore(object = q.all.mlg, features = list(dds_deg_if$geni), ctrl = 100, name = 'IF')
+p_2 <- FeaturePlot_scCustom(seurat_object = q.all.mlg, features = 'IF1')
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/IF_Malignant_B_perc.tiff", p_2, width=5, height=5, device = "tiff")
+#dev.off()
+
+q.all.mlg <- AddModuleScore(object = q.all.mlg, features = list(dds_deg_gc$geni), ctrl = 100, name = 'GC')
+p_3 <- FeaturePlot_scCustom(seurat_object = q.all.mlg, features = 'GC1', na_cutoff = 0.2)
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/GC_Malignant_B_perc.tiff", p_3, width=5, height=5, device = "tiff")
+#dev.off()
+
+q.all.mlg <- AddModuleScore(object = q.all.mlg, features = list(dds_deg_relapse$geni), ctrl = 100, name = 'Relapse')
+p_4 <- FeaturePlot_scCustom(seurat_object = q.all.mlg, features = 'Relapse1')
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/Relapse_Malignant_B_perc.tiff", p_4, width=5, height=5, device = "tiff")
+#dev.off()
+
+q.all.mlg <- AddModuleScore(object = q.all.mlg, features = list(dds_deg_no_relapse$geni), ctrl = 100, name = 'NonRelapse')
+p_5 <- FeaturePlot_scCustom(seurat_object = q.all.mlg, features = 'NonRelapse1')
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/NonRelapse_Malignant_B_perc.tiff", p_5, width=5, height=5, device = "tiff")
+#dev.off()
+
+```
+
+```{r}
+#Myeloid cells 
+
+q.all.nmye <- AddModuleScore(object = q.all.nmye, features = list(dds_deg_dz$geni), ctrl = 100, name = 'DZ')
+p <- FeaturePlot_scCustom(seurat_object = q.all.nmye, features = 'DZ1', na_cutoff = 0.2)
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/DZ_Myeloid_perc.tiff", p, width=5, height=5, device = "tiff")
+#dev.off()
+
+
+q.all.nmye <- AddModuleScore(object = q.all.nmye, features = list(dds_deg_lz$geni), ctrl = 100, name = 'LZ')
+p_1 <- FeaturePlot_scCustom(seurat_object = q.all.nmye, features = 'LZ1', order = F, na_cutoff = 0.1)
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/LZ_Myeloid_perc.tiff", p_1,  width=5, height=5, device = "tiff")
+#dev.off()
+
+q.all.nmye <- AddModuleScore(object = q.all.nmye, features = list(dds_deg_if$geni), ctrl = 100, name = 'IF')
+p_2 <- FeaturePlot_scCustom(seurat_object = q.all.nmye, features = 'IF1')
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/IF_Myeloid_perc.tiff", p_2, width=5, height=5, device = "tiff")
+#dev.off()
+
+q.all.nmye <- AddModuleScore(object = q.all.nmye, features = list(dds_deg_gc$geni), ctrl = 100, name = 'GC')
+p_3 <- FeaturePlot_scCustom(seurat_object = q.all.nmye, features = 'GC1')
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/GC_Myleoid_perc.tiff", p_3, width=5, height=5, device = "tiff")
+#dev.off()
+
+q.all.nmye <- AddModuleScore(object = q.all.nmye, features = list(dds_deg_relapse$geni), ctrl = 100, name = 'Relapse')
+p_4 <- FeaturePlot_scCustom(seurat_object = q.all.nmye, features = 'Relapse1')
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/Relapse_Myeloid_perc.tiff", p_4, width=5, height=5, device = "tiff")
+#dev.off()
+
+q.all.nmye <- AddModuleScore(object = q.all.nmye, features = list(dds_deg_no_relapse$geni), ctrl = 100, name = 'NonRelapse')
+p_5 <- FeaturePlot_scCustom(seurat_object = q.all.nmye, features = 'NonRelapse1')
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/NonRelapse_Myeloid_perc.tiff", p_5, width=5, height=5, device = "tiff")
+#dev.off()
+
+```
+
+
+```{r}
+#T cells 
+q.all.nt <- AddModuleScore(object = q.all.nt, features = list(dds_deg_dz$geni), ctrl = 100, name = 'DZ')
+p <- FeaturePlot_scCustom(seurat_object = q.all.nt, features = 'DZ1', order = F, cols = pal)
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/DZ_Tcell.tiff", p, width=5, height=5, device = "tiff")
+#dev.off()
+
+
+q.all.nt <- AddModuleScore(object = q.all.nt, features = list(dds_deg_lz$geni), ctrl = 100, name = 'LZ')
+p_1 <- FeaturePlot_scCustom(seurat_object = q.all.nt, features = 'LZ1', order = F, cols = pal)
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/LZ_Tcell.tiff", p_1,  width=5, height=5, device = "tiff")
+#dev.off()
+
+q.all.nt <- AddModuleScore(object = q.all.nt, features = list(dds_deg_if$geni), ctrl = 100, name = 'IF')
+p_2 <- FeaturePlot_scCustom(seurat_object = q.all.nt, features = 'IF1', order = F, cols = pal)
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/IF_Tcells.tiff", p_2, width=5, height=5, device = "tiff")
+#dev.off()
+
+q.all.nt <- AddModuleScore(object = q.all.nt, features = list(dds_deg_gc$geni), ctrl = 100, name = 'GC')
+p_3 <- FeaturePlot_scCustom(seurat_object = q.all.nt, features = 'GC1', order = F, cols = pal)
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/GC_Tcell.tiff", p_3, width=5, height=5, device = "tiff")
+#dev.off()
+
+q.all.nt <- AddModuleScore(object = q.all.nt, features = list(dds_deg_relapse$geni), ctrl = 100, name = 'Relapse')
+p_4 <- FeaturePlot_scCustom(seurat_object = q.all.nt, features = 'Relapse1', order = F, cols = pal)
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/Relapse_Tcell.tiff", p_4, width=5, height=5, device = "tiff")
+#dev.off()
+
+q.all.nt <- AddModuleScore(object = q.all.nt, features = list(dds_deg_no_relapse$geni), ctrl = 100, name = 'NonRelapse')
+p_5 <- FeaturePlot_scCustom(seurat_object = q.all.nt, features = 'NonRelapse1', order = F, cols = pal)
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/NonRelapse_Tcell.tiff", p_5, width=5, height=5, device = "tiff")
+#dev.off()
+
+```
+
+
+```{r}
+#momac
+momac <- AddModuleScore(object = momac, features = dz, ctrl = 100, name = 'DZ')
+p <- FeaturePlot_scCustom(seurat_object =momac, features = 'DZ1', label = T, na_cutoff = 0.1)
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/momac_DZ.tiff", p, width=5, height=5, device = "tiff")
+#dev.off()
+
+
+momac <- AddModuleScore(object = momac, features = list(dds_deg_lz$geni), ctrl = 100, name = 'LZ')
+p_1 <- FeaturePlot_scCustom(seurat_object =momac, features = 'LZ1', label = T, raster = NULL, raster.dpi = c(512, 512), label.size = 2.5, repel = TRUE, label.color = "black")
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/LZ_momac.tiff", p_1,  width=5, height=5, device = "tiff")
+#dev.off()
+
+momac <- AddModuleScore(object = momac, features = list(dds_deg_if$geni), ctrl = 100, name = 'IF')
+p_2 <- FeaturePlot_scCustom(seurat_object = momac, features = 'IF1',label = T, raster = NULL, raster.dpi = c(512, 512), label.size = 2.5, repel = TRUE, label.color = "black")
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/IF_momac.tiff", p_2, width=5, height=5, device = "tiff")
+#dev.off()
+
+momac <- AddModuleScore(object = momac, features = list(dds_deg_gc$geni), ctrl = 100, name = 'GC')
+p_3 <- FeaturePlot_scCustom(seurat_object = momac, features = 'GC1', label = F, raster = NULL, raster.dpi = c(512, 512), label.size = 2.5, repel = TRUE, label.color = "black")
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/GC_momac.tiff", p_3, width=5, height=5, device = "tiff")
+#dev.off()
+
+momac <- AddModuleScore(object = momac, features = relapse, ctrl = 100, name = 'Relapse')
+p_4 <- FeaturePlot_scCustom(seurat_object = momac, features = 'Relapse1', label = T, raster = NULL, raster.dpi = c(512, 512), label.size = 2.5, repel = TRUE, label.color = "black")
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/Relapse_momac.tiff", p_4, width=5, height=5, device = "tiff")
+#dev.off()
+
+momac <- AddModuleScore(object = momac, features = no_relapse, ctrl = 100, name = 'NonRelapse')
+p_5 <- FeaturePlot_scCustom(seurat_object = momac, features = 'NonRelapse1', label = T, raster = NULL, raster.dpi = c(512, 512), label.size = 2.5, repel = TRUE, label.color = "black")
+ggsave("~/index copy/_book/OneDrive - National University of Singapore/DPS Paper/NonRelapse_momac.tiff", p_5, width=5, height=5, device = "tiff")
+
+```
+
