@@ -11,14 +11,14 @@ DimPlot(MoMac)
 
 DefaultAssay(MoMac) = "RNA"
 
-# custom gene signature score of gene list from Signature_Plot_List.R
+# custom gene signature score of gene list from MacroSig_GeneList
 MoMac <- AddModuleScore(
   object = MoMac,
-  features = list(Interfol_up2),
-  name = 'Interfol_upV'
+  features = list(GC),
+  name = 'GC'
 )
 
-#Plot signatures
+#Plot signatures example
 
 FeaturePlot_scCustom(MoMac, features = "Interfol_upV1", order = F)
 
